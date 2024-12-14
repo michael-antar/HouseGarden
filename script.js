@@ -19,7 +19,7 @@ let currSunPosition = 0;
 
 
 
-const sunOpacities = []
+const sunOpacities = [0, 100]
 
 const windowFrame = document.getElementById("window-frame");
 
@@ -52,8 +52,9 @@ document.addEventListener("wheel", () => {
     lighting.style.backgroundColor = newLightingColor;
     windowFrame.style.backgroundColor = newLightingColor;
 
-    
+
     sun.style.top = 50 * Math.sin(2 * Math.PI * ((scrollStepCtr + 75) / 100)) + 50 + "%";
+    sun.style.opacity = 0.04 * Math.pow(scrollStepCtr - 50, 2) + "%";
 
 
     if (scrollStepCtr < scrollSteps - 1) {
