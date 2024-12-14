@@ -1,12 +1,28 @@
+const scrollSteps = 100;
+let scrollStepCtr = 0;
+let scrollOnCooldown = false;
+
 const lighting = document.getElementById("lighting");
 const lightingColors = [
     [173, 216, 230],
+    [173, 216, 230],
+    [173, 216, 230],
     [255, 165, 0],
     [0, 0, 0],
-    [255, 165, 0]
+    [0, 0, 0],
+    [0, 0, 0],
+    [255, 165, 0],
+    [173, 216, 230],
+    [173, 216, 230]
 ];
-const lightingColorTriggers = [0, 25, 50, 75];
+const lightingColorTriggers = [];
+for (let i = 0; i < scrollSteps; i += scrollSteps / lightingColors.length) {
+    lightingColorTriggers.push(Math.round(i));
+    // console.log(Math.round(i));
+}
+console.log(lightingColorTriggers)
 let lightingColorIterator = 0;
+let lightingColorChangeRate;
 let currLightingColor = lightingColors[0];
 
 let lightingColorDiff = lightingColors[lightingColorIterator].map((num, index) => num - currLightingColor[index]);
@@ -23,25 +39,29 @@ const sunOpacities = [0, 100]
 
 const windowFrame = document.getElementById("window-frame");
 
-const scrollSteps = 100;
-let scrollStepCtr = 0;
-let scrollOnCooldown = false;
-
 document.addEventListener("wheel", () => {
     if (scrollOnCooldown) {
         return;
     }
 
     if (lightingColorTriggers.includes(scrollStepCtr)) {
+        console.log(scrollStepCtr)
         currLightingColor = lightingColors[lightingColorIterator];
 
-        lightingColorIterator = lightingColorIterator + 1 < lightingColors.length ? lightingColorIterator + 1 : 0;
+        lightingColorChangeRate = lightingColorIterator + 1 < lightingColors.length 
+            ? lightingColorTriggers[lightingColorIterator + 1] - lightingColorTriggers[lightingColorIterator]
+            : scrollSteps - lightingColorTriggers[lightingColorIterator];
+
+        lightingColorIterator = lightingColorIterator + 1 < lightingColors.length 
+            ? lightingColorIterator + 1 
+            : 0;
 
         lightingColorDiff = lightingColors[lightingColorIterator].map((num, index) => num - currLightingColor[index]);
     }
 
-    const lightingColorDelta = lightingColorDiff.map((num) => num / 25);
+    const lightingColorDelta = lightingColorDiff.map((num) => num / lightingColorChangeRate);
     currLightingColor = currLightingColor.map((num, index) => num + lightingColorDelta[index]);
+    console.log(currLightingColor);
 
     const newLightingColor = `rgb(
         ${Math.round(currLightingColor[0])},
@@ -69,3 +89,13 @@ document.addEventListener("wheel", () => {
         scrollOnCooldown = false;
     }, 100);
 });
+
+// const array = 
+
+// var first = 0;
+// var last = 100;
+// var skip = 100 / 6;
+// for( var i = first; i < last; i += skip ){
+//  //work with array[i]
+//  console.log(Math.round(i));
+// }
