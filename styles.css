@@ -1,0 +1,60 @@
+:root {
+    --back-wall-color: rgb(163, 169, 174);
+    --side-wall-color: rgb(134, 139, 143);
+    --floor-color: rgb(193, 150, 108);
+}
+
+* {
+    margin: 0;
+    overflow: hidden;
+}
+
+body {
+    background-color: black;
+}
+
+#lighting {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+
+    z-index: 1000;
+
+    background-color: rgb(173, 216, 230);
+
+    opacity: 0.2;
+}
+
+#side-wall {
+    position: absolute;
+    top: -10vh;
+
+    width: 20vw;
+    height: 2000vh;
+    background-color: var(--side-wall-color);
+    float: left;
+
+    transform: skew(0, -45deg);
+}
+
+#back-wall {
+    position: absolute;
+    left: 20vw;
+
+    width: 80vw;
+    height: 80vh;
+    background-color: var(--back-wall-color);
+    float: left;
+}
+
+#floor {
+    position: absolute;
+    left: 10vw;
+    top: 80vh;
+
+    width: 100vw;
+    height: 20vw;
+    background-color: var(--floor-color);
+
+    transform: skew(-45deg, 0);
+}
