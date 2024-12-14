@@ -5,37 +5,66 @@ const lightingColors = [
     [0, 0, 0],
     [255, 165, 0]
 ];
-let prevLightingColor = 0;
-let nextLightingColor = 1;
-let lightingOnCooldown = false;
+const lightingColorTriggers = [0, 25, 50, 75];
+let lightingColorIterator = 0;
+let currLightingColor = lightingColors[0];
 
-const scrollSteps = 10;
-let scrollStepCtr = 1;
+let lightingColorDiff = lightingColors[lightingColorIterator].map((num, index) => num - currLightingColor[index]);
+
+const sun = document.getElementById("sun");
+const sunPositions = [0, 100];
+let sunPositionIterator = 0;
+let currSunPosition = 0;
+
+
+
+
+const sunOpacities = []
+
+const windowFrame = document.getElementById("window-frame");
+
+const scrollSteps = 100;
+let scrollStepCtr = 0;
+let scrollOnCooldown = false;
 
 document.addEventListener("wheel", () => {
-    if (lightingOnCooldown) {
+    if (scrollOnCooldown) {
         return;
     }
 
-    const color = getComputedStyle(lighting).backgroundColor;
-    const rgb = color.match(/\d+/g).map((item) => parseInt(item, 10));
+    if (lightingColorTriggers.includes(scrollStepCtr)) {
+        currLightingColor = lightingColors[lightingColorIterator];
 
-    scrollStepCtr++;
-    if (scrollStepCtr >= scrollSteps) {
-        prevLightingColor = prevLightingColor >= lightingColors.length - 1 ? 0 : prevLightingColor + 1;
-        nextLightingColor = nextLightingColor >= lightingColors.length - 1 ? 0 : nextLightingColor + 1;
+        lightingColorIterator = lightingColorIterator + 1 < lightingColors.length ? lightingColorIterator + 1 : 0;
 
-        scrollStepCtr = 1;
+        lightingColorDiff = lightingColors[lightingColorIterator].map((num, index) => num - currLightingColor[index]);
     }
 
-    const change = lightingColors[nextLightingColor].map((num, index) => num - lightingColors[prevLightingColor][index]);
-    const delta = change.map((num) => Math.floor(num / scrollSteps));
+    const lightingColorDelta = lightingColorDiff.map((num) => num / 25);
+    currLightingColor = currLightingColor.map((num, index) => num + lightingColorDelta[index]);
 
-    const newColor = `rgb(${rgb[0] + delta[0]},${rgb[1] + delta[1]},${rgb[2] + delta[2]})`;
-    lighting.style.backgroundColor = newColor;
+    const newLightingColor = `rgb(
+        ${Math.round(currLightingColor[0])},
+        ${Math.round(currLightingColor[1])},
+        ${Math.round(currLightingColor[2])}
+    )`;
 
-    lightingOnCooldown = true;
+    lighting.style.backgroundColor = newLightingColor;
+    windowFrame.style.backgroundColor = newLightingColor;
+
+    
+    sun.style.top = 50 * Math.sin(2 * Math.PI * ((scrollStepCtr + 75) / 100)) + 50 + "%";
+
+
+    if (scrollStepCtr < scrollSteps - 1) {
+        scrollStepCtr++;
+    }
+    else {
+        scrollStepCtr = 0;
+    }
+
+    scrollOnCooldown = true;
     setTimeout(() => {
-        lightingOnCooldown = false;
+        scrollOnCooldown = false;
     }, 100);
-})
+});

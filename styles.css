@@ -2,6 +2,8 @@
     --back-wall-color: rgb(163, 169, 174);
     --side-wall-color: rgb(134, 139, 143);
     --floor-color: rgb(193, 150, 108);
+
+    --dark-brown: rgb(125, 60, 28);
 }
 
 * {
@@ -26,18 +28,53 @@ body {
 }
 
 #side-wall {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     position: absolute;
     top: -10vh;
 
     width: 20vw;
-    height: 2000vh;
+    height: 120vh;
     background-color: var(--side-wall-color);
     float: left;
 
     transform: skew(0, -45deg);
 }
 
+#window-frame {
+    width: 60%;
+    height: 30%;
+    /* background-color: red; */
+
+    border: 10px solid var(--dark-brown);
+    border-radius: 7px;
+}
+
+#sun {
+    position: relative;
+    /* left: 25%; */
+    /* top: 100%; */
+
+    height: 70px;
+    aspect-ratio: 0.75;
+
+    background-color: rgb(248, 248, 172);
+    border-radius: 50%;
+
+    /* margin: auto; */
+}
+
+/* #window-pane {
+
+} */
+
 #back-wall {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     position: absolute;
     left: 20vw;
 
@@ -45,6 +82,14 @@ body {
     height: 80vh;
     background-color: var(--back-wall-color);
     float: left;
+}
+
+.shelf {
+    width: 50px;
+    height: 10px;
+    background-color: var(--floor-color);
+
+    /* transform: translate3d(20px, -15px, 70px); */
 }
 
 #floor {
