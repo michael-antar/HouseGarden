@@ -46,7 +46,7 @@ body {
 #window-frame {
     width: 60%;
     height: 30%;
-    /* background-color: red; */
+    background-color: rgb(173, 216, 230);
 
     border: 10px solid var(--dark-brown);
     border-radius: 7px;
@@ -54,16 +54,16 @@ body {
 
 #sun {
     position: relative;
-    /* left: 25%; */
-    /* top: 100%; */
 
     height: 70px;
     aspect-ratio: 0.75;
 
-    background-color: rgb(248, 248, 172);
     border-radius: 50%;
 
-    /* margin: auto; */
+    background-color: orange;
+    box-shadow: 0 0 35px 5px yellow,0 0 25px 10px yellow inset;
+
+    margin: 0 auto;
 }
 
 /* #window-pane {
