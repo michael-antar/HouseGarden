@@ -54,6 +54,7 @@ body {
 
 #sun {
     position: relative;
+    left: 37.5%;
 
     height: 70px;
     aspect-ratio: 0.75;
@@ -63,7 +64,7 @@ body {
     background-color: orange;
     box-shadow: 0 0 35px 5px yellow,0 0 25px 10px yellow inset;
 
-    margin: 0 auto;
+    /* margin: 0 auto; */
 }
 
 /* #window-pane {
