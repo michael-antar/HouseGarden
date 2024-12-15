@@ -29,6 +29,7 @@ let lightingColorChangeRate = lightingColorIterator + 1 < lightingColors.length
 let lightingColorDiff = lightingColors[lightingColorIterator].map((num, index) => num - currLightingColor[index]);
 
 const sun = document.getElementById("sun");
+const moon = document.getElementById("moon");
 
 const windowFrame = document.getElementById("window-frame");
 
@@ -66,8 +67,12 @@ document.addEventListener("wheel", () => {
 
 
     sun.style.top = 50 * Math.sin(2 * Math.PI * ((scrollStepCtr + 75) / 100)) + 50 + "%";
-    sun.style.opacity = 0.04 * Math.pow(scrollStepCtr - 50, 2) + "%";
     sun.style.left = scrollStepCtr <= 50 ? (scrollStepCtr + 50) * 0.75 + "%" : (scrollStepCtr - 50) * 0.75 + "%";
+    sun.style.opacity = 0.04 * Math.pow(scrollStepCtr - 50, 2) + "%";
+
+    moon.style.top = -50 * Math.sin(2 * Math.PI * ((scrollStepCtr + 75) / 100)) + 50 + "%";
+    moon.style.left = scrollStepCtr * 0.75 + "%";
+    moon.style.opacity = -0.08 * Math.pow(scrollStepCtr - 50, 2) + 100 + "%";
 
 
     if (scrollStepCtr < scrollSteps - 1) {

@@ -63,13 +63,20 @@ body {
 
     background-color: orange;
     box-shadow: 0 0 35px 5px yellow,0 0 25px 10px yellow inset;
-
-    /* margin: 0 auto; */
 }
 
-/* #window-pane {
+#moon {
+    position: relative;
+    top: 100%;
 
-} */
+    height: 40px;
+    aspect-ratio: 0.75;
+
+    border-radius: 50%;
+
+    background-color: gray;
+    box-shadow: 0 0 35px 5px white,0 0 25px 10px white inset;
+}
 
 #back-wall {
     display: flex;
