@@ -1,7 +1,9 @@
 :root {
-    --back-wall-color: rgb(163, 169, 174);
-    --side-wall-color: rgb(134, 139, 143);
+    --wall-color: rgb(163, 169, 174);
+    --wall-shadow: rgb(94, 97, 100);
+
     --floor-color: rgb(193, 150, 108);
+    --floor-shadow: rgb(119, 93, 67);
 
     --dark-brown: rgb(125, 60, 28);
 }
@@ -27,18 +29,23 @@ body {
     opacity: 0.2;
 }
 
+.wall {
+    position: absolute;
+    float: left;
+
+    background: radial-gradient(var(--wall-color), var(--wall-shadow));
+
+}
+
 #side-wall {
     display: flex;
     align-items: center;
     justify-content: center;
 
-    position: absolute;
     top: -10vh;
 
     width: 20vw;
     height: 120vh;
-    background-color: var(--side-wall-color);
-    float: left;
 
     transform: skew(0, -45deg);
 }
@@ -62,7 +69,7 @@ body {
     border-radius: 50%;
 
     background-color: orange;
-    box-shadow: 0 0 35px 5px yellow,0 0 25px 10px yellow inset;
+    box-shadow: 0 0 35px 5px yellow, 0 0 25px 10px yellow inset;
 }
 
 #moon {
@@ -75,7 +82,7 @@ body {
     border-radius: 50%;
 
     background-color: gray;
-    box-shadow: 0 0 35px 5px white,0 0 25px 10px white inset;
+    box-shadow: 0 0 35px 5px white, 0 0 25px 10px white inset;
 }
 
 #back-wall {
@@ -83,13 +90,10 @@ body {
     align-items: center;
     justify-content: center;
 
-    position: absolute;
     left: 20vw;
 
     width: 80vw;
     height: 80vh;
-    background-color: var(--back-wall-color);
-    float: left;
 }
 
 .shelf {
@@ -107,7 +111,7 @@ body {
 
     width: 100vw;
     height: 20vw;
-    background-color: var(--floor-color);
+    background: radial-gradient(var(--floor-color), var(--floor-shadow));
 
     transform: skew(-45deg, 0);
 }
