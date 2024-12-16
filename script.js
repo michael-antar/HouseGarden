@@ -3,6 +3,7 @@ let scrollStepCtr = 0;
 let scrollOnCooldown = false;
 
 const lighting = document.getElementById("lighting");
+// RGB values
 const lightingColors = [
     [173, 216, 230],
     [173, 216, 230],
@@ -32,6 +33,28 @@ const sun = document.getElementById("sun");
 const moon = document.getElementById("moon");
 
 const windowFrame = document.getElementById("window-frame");
+
+const backWall = document.getElementById("back-wall");
+// Length, width, height
+const shelfDimensions = [
+    ["100px", "40px", "20px"],
+    ["200px", "50px", "30px"],
+]
+
+const createShelfs = () => {
+    for (const shelfDimension of shelfDimensions) {
+        const shelfElement = `
+        <div class="shelf">
+            <div class="shelf-top" style="width:${shelfDimension[0]};height:${shelfDimension[1]};"></div>
+            <div class="shelf-front" style="width:${shelfDimension[0]};height:${shelfDimension[2]};"></div>
+            <div class="shelf-back" style="width:${shelfDimension[1]};height:${shelfDimension[2]};"></div>
+        </div>
+        `;
+        backWall.innerHTML += shelfElement;
+    }
+}
+
+createShelfs();
 
 document.addEventListener("wheel", () => {
     if (scrollOnCooldown) {

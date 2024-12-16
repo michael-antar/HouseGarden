@@ -5,6 +5,8 @@
     --floor-color: rgb(193, 150, 108);
     --floor-shadow: rgb(119, 93, 67);
 
+    --shelf-shadow: rgb(149, 116, 84);
+
     --dark-brown: rgb(125, 60, 28);
 }
 
@@ -34,7 +36,6 @@ body {
     float: left;
 
     background: radial-gradient(var(--wall-color), var(--wall-shadow));
-
 }
 
 #side-wall {
@@ -42,12 +43,13 @@ body {
     align-items: center;
     justify-content: center;
 
-    top: -10vh;
+    top: -20vh;
 
     width: 20vw;
-    height: 120vh;
+    height: 100vh;
 
-    transform: skew(0, -45deg);
+    transform-origin: right;
+    transform: skew(0, -45deg);  
 }
 
 #window-frame {
@@ -96,12 +98,28 @@ body {
     height: 80vh;
 }
 
-.shelf {
-    width: 50px;
-    height: 10px;
-    background-color: var(--floor-color);
+/* .shelf {
 
-    /* transform: translate3d(20px, -15px, 70px); */
+} */
+
+.shelf-top {
+    background: radial-gradient(var(--floor-color), var(--shelf-shadow));
+
+    transform-origin: bottom;
+    transform: skew(-45deg, 0);
+}
+
+.shelf-front {
+    background: radial-gradient(var(--floor-color), var(--shelf-shadow));
+
+    float: left;
+}
+
+.shelf-back {
+    background: radial-gradient(var(--floor-color), var(--shelf-shadow));
+
+    transform-origin: left;
+    transform: skew(0, -45deg);
 }
 
 #floor {
@@ -113,5 +131,6 @@ body {
     height: 20vw;
     background: radial-gradient(var(--floor-color), var(--floor-shadow));
 
+    transform-origin: right;
     transform: skew(-45deg, 0);
 }
