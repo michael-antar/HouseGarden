@@ -41,16 +41,19 @@ const shelfDimensions = [
     ["200px", "50px", "30px"],
 ]
 
+// TODO Change to use append child. Must change shelfElement to be node instead of just html text
 const createShelfs = () => {
     for (const shelfDimension of shelfDimensions) {
-        const shelfElement = `
-        <div class="shelf">
+        const shelfElement = document.createElement("div");
+        
+        shelfElement.className = "shelf";
+        shelfElement.innerHTML = `
             <div class="shelf-top" style="width:${shelfDimension[0]};height:${shelfDimension[1]};"></div>
             <div class="shelf-front" style="width:${shelfDimension[0]};height:${shelfDimension[2]};"></div>
             <div class="shelf-back" style="width:${shelfDimension[1]};height:${shelfDimension[2]};"></div>
-        </div>
         `;
-        backWall.innerHTML += shelfElement;
+
+        backWall.appendChild(shelfElement);
     }
 }
 
